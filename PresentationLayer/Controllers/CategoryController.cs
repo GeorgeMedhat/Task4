@@ -56,7 +56,7 @@ namespace PresentationLayer.Controllers
             if (cat == null)
                 return NotFound();
             else
-                return View("Edit");
+                return View(cat);
         }
 
         [HttpPost]

@@ -14,8 +14,15 @@ namespace PresentationLayer.Controllers
         }
         public IActionResult Index()
         {
-            var categories = dbContext.Categories.ToList();
+            var categories = dbContext.Categories.Where(c=>c.markedAsDeleted==false);
 
+            return View(categories);
+        }
+
+
+        public IActionResult GetAllCategories()
+        {
+            var categories = dbContext.Categories.ToList();
             return View(categories);
         }
 
@@ -45,7 +52,7 @@ namespace PresentationLayer.Controllers
 
             dbContext.SaveChanges();
 
-            return View("Index",dbContext.Categories);
+            return View("Index",dbContext.Categories.Where(c=>c.markedAsDeleted==false));
         }
 
         [HttpGet]
@@ -74,7 +81,7 @@ namespace PresentationLayer.Controllers
 
             TempData["SuccessMessage"] = "Category updated successfully!";
 
-            return View("Index",dbContext.Categories);
+            return View("Index", dbContext.Categories.Where(c => c.markedAsDeleted == false));
         }
 
 
@@ -84,7 +91,8 @@ namespace PresentationLayer.Controllers
             if (cat == null)
                 return NotFound();
 
-            dbContext.Categories.Remove(cat);
+            cat.markedAsDeleted = true;
+
             dbContext.SaveChanges();
 
             TempData["SuccessMessage"] = "Category deleted successfully!";

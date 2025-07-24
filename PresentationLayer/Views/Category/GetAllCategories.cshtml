@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BusinessLogic.Models.Category>
+
+<div class="container mt-4">
+
+    <div class="mb-3">
+        <a asp-action="Index" class="btn btn-primary">
+            ← Back to Active Categories
+        </a>
+    </div>
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            <div class="col-md-4">
+                <partial name="_CategoryCard" model="category" />
+            </div>
+        }
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+    </div>
+</div>

@@ -1,6 +1,6 @@
 using System.Diagnostics;
+using BusinessLogic.Models;
 using Microsoft.AspNetCore.Mvc;
-using PresentationLayer.Models;
 
 namespace PresentationLayer.Controllers;
 

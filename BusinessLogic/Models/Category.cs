@@ -23,5 +23,8 @@ namespace BusinessLogic.Models
         //[Column("isDeleted")]
         public bool markedAsDeleted { get; set; }
 
+
+        public List<Product> products { get; set; }
+
     }
 }
